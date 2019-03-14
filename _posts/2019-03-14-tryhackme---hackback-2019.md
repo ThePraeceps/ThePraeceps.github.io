@@ -21,16 +21,16 @@ Once connected simply submit empty answers to get the points.
 As this as an easy task I expected that the credentials or flags would be leaked somewhere on the page, rather than through any fancy exploitation. If we look at the source code of the homepage we can see a username "hidden" as a comment.
 
 >index.html
->{:.filename}
->{% highlight html %}
->  <!--
->
->    Note to self, remember username!
->
->    Username: R1ckRul3s
->
->  -->
->{% endhighlight  %}
+{:.filename}
+{% highlight html %}
+  <!--
+
+    Note to self, remember username!
+
+    Username: R1ckRul3s
+
+  -->
+{% endhighlight  %}
 
 I next looked at the "robots.txt" file as that is a common place for information leakage. 
 >robots.txt
