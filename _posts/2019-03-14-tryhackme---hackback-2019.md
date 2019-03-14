@@ -184,7 +184,7 @@ while(True):
 print("Finished the final total is:")
 print(round(total,2))
 {% endhighlight  %}
-
+</div>
 
 I will add more tasks as I complete the write up for them.
 
