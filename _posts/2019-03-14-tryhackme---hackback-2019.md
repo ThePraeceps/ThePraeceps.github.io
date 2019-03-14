@@ -108,8 +108,82 @@ Due to the nature of networking, it is also important to implement catching exce
 Given these conditions here is my code:
 
 
+>getflag.py
+{:.filename}
+{% highlight python %}
+import socket
+from time import sleep
+ip="DEPLOYED IP"
+getpage="GET / HTTP/1.1\nHost:" + ip + "\n\n"
+def getopenport():
+	portstart="<a target=\"_blank\" id=\"onPort\""
+	portend="</a"
+	try:
+		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		s.connect((ip, 3010))
+		s.send(getpage.encode())
+		httpdata=s.recv(1024)
+		httpdata+=s.recv(1024)
+		page=httpdata.decode()
+		s.close()
+		return int(page[page.find(portstart)+len(portstart):page.find(portend)])
+	except:
+		return 0
 
-I will add more tasks as I complete the write up for them.
+def processline(line, current_total):
+	data=line.split()
+	total=0
+	operation=data[0]
+	value=float(data[1])
+	nextport=int(data[2])
+	if "add" in operation:
+		total=current_total+value
+	elif "minus" in operation:
+		total=current_total-value
+	elif "multiply" in operation:
+		total=current_total*value
+	elif "divide" in operation:
+		total=current_total/value
+	else:
+		print("ERROR!!!")
+		print(line)
+	return nextport, total
 
+lastport=0
+currentport=0
+desiredport=1337
+total=float(0)
+
+while(True):
+	currentport=getopenport()
+	if(currentport != lastport):
+		if(currentport != 0):
+			lastport=currentport
+			print("Current Port: " + str(currentport))
+	if(currentport==desiredport):
+		sleep(0.5)
+		try:
+			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			s.connect((ip, desiredport))
+			s.send(getpage.encode())
+			httpdata=s.recv(1024)
+			httpdata+=s.recv(1024)
+			page=httpdata.decode()
+			s.close()
+			if "STOP" in page:
+				break
+			lines=page.split("\n")
+			print("Recieved: " + lines[-1])
+			desiredport, total=processline(lines[-1], total)
+			if desiredport == 9765:
+				break
+			print("Current Total: " + str(total))
+		except:
+			print("Connection failed to: " + ip + ":" + str(currentport))
+	else:
+		sleep(1)
+print("Finished the final total is:")
+print(round(total,2))
+{% endhighlight  %}
 
 
