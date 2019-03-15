@@ -409,9 +409,10 @@ __init_array_end
 ...
 {% endhighlight  %}
 
-However, I could not find anything that looked like the flag in strings. I decided to open up the NSA's reverse engineering tool Ghidra and decompile the binary to see what is happening.
+However, I could not find anything that looked like a flag in. Deciding I needed to go further, I decided to open up the NSA's reverse engineering tool Ghidra and decompile the binary to see what is really happening.
 
 ![Ghidra Decompiler]({{ '/assets/images/hackback-2019/hackback-2019-ghidra.jpeg' | relative_url }}){: .center-image }*Ghidra decompiler showing a decompiled version of the program*
 
-This shows us a case statement spelling out "THMRANDENC" which looks like a potential flag, which was indeed correct.
+This shows us a case statement spelling out "THMRANDENC" which looks like a potential flag, which was the correct answer.
+
 
