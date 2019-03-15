@@ -373,7 +373,7 @@ I also tried a whole bunch of common other locations such as crontab, important 
 
 I even tried using dd and ssh to copy an image of the hard drive over the network to my computer. I did find some evidence of the flag file but I don't have enough experiance with hard drive foresrensics to locate it within the image.
 
-#Task 5: Base64 [Scripting] [Easy]
+# Task 5: Base64 [Scripting] [Easy]
 
 While my initial gut reaction was to use bash for this, I decided to use Python as I'm more capable with it and debugging would be quicker for me personally. The instructions for this are quite clear, you needed to base64 decode the string 50 times, so here is my python script.
 
