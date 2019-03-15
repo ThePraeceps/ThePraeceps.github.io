@@ -199,7 +199,7 @@ So let us just fire SQLMap at it and dump the database, right?
 
 Whoops. Further investigation shows us that it seems like some filtering is being done on the input. I tried for a while to try and wrangle SQLMap into working around it, however in the end I decided that doing it manually would be both educational and take less time.
 
-![SQLMap Fail]({{ '/assets/images/hackback-2019/hackback-2019-permissiondenied.jpeg' | relative_url }}){: .center-image }*Permissioned Denied entering "--"*
+![Permission Denied]({{ '/assets/images/hackback-2019/hackback-2019-permissiondenied.jpeg' | relative_url }}){: .center-image }*Permissioned Denied entering "--"*
 
 However, we can confirm SQL Injection is possible as if we enter strings like "3-1" we get result 2, showing that the entry is dynamic. ID number 5 leaks some information about the filtering, returning "Dennis, why have you blocked these characters: ' # DROP - username @ ---- Is this our WAF now?".
 
