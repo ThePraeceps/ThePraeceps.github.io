@@ -391,3 +391,27 @@ for i in range(50):
 
 print(text.decode())
 {% endhighlight  %}
+
+# Task 6: Secret Encryption [Reverse Engineering] [Easy]
+
+From the task name we know that the flag we're looking for likely encrypted in some way. I quick "strings" of the file doesn't reveal the flag, but does give a strong indication that ROT 13 is involved in some way.
+
+>strings encrypted-password
+{:.filename}
+{% highlight text %}
+...
+__do_global_dtors_aux_fini_array_entry
+frame_dummy
+__frame_dummy_init_array_entry
+rot13new.c
+__FRAME_END__
+__init_array_end
+...
+{% endhighlight  %}
+
+However, I could not find anything that looked like the flag in strings. I decided to open up the NSA's reverse engineering tool Ghidra and decompile the binary to see what is happening.
+
+![Ghidra Decompiler]({{ '/assets/images/hackback-2019/hackback-2019-ghidra.jpeg' | relative_url }}){: .center-image }*Ghidra decompiler showing a decompiled version of the program*
+
+This shows us a case statement spelling out "THMRANDENC" which looks like a potential flag, which was indeed correct.
+
