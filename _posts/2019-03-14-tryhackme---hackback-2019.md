@@ -374,3 +374,22 @@ I found some evidence in "/home/ubuntu/.viminfo", suggesting it was in "/tmp/" b
 I also tried a whole bunch of common other locations such as crontab, important configuration files, and important logging files with no success. I also tried greping the file system for "flag4" and "flagfour" with no success. I look forward to hearing where this flag is because 
 
 I even tried using dd and ssh to copy an image of the hard drive over the network to my computer. I did find some evidence of the flag file but I don't have enough experiance with hard drive foresrensics to locate it within the image.
+
+##Task 5: Base64 [Scripting] [Easy]
+
+While my initial gut reaction was to use bash for this, I decided to use Python as I'm more capable with it and debugging would be quicker for me personally. The instructions for this are quite clear, you needed to base64 decode the string 50 times, so here is my python script.
+
+
+>getflag.py
+{:.filename}
+{% highlight python %}
+import base64, io
+
+file = open("b64.txt", "r")
+text=file.read()
+
+for i in range(50):
+	text=base64.b64decode(text)
+
+print(text.decode())
+{% endhighlight  %}
