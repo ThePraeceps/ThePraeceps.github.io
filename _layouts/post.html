@@ -19,9 +19,6 @@
                     </ul>
                   </div>
                   <div class="post-content">
-                    {% if page.toc %}
-                      {% include toc.html html=content class='toc' %}
-                    {% endif %}
                     {{ content }}
                     {% include share.html %}
                   </div>
@@ -29,6 +26,9 @@
               </div>
             </div>
             <div class="col-md-3 hidden-xs">
+              {% if page.toc %}
+                {% include toc.html html=content class='toc' %}
+              {% endif %}
               {% include sidebar.html %}
             </div>
           </div>
