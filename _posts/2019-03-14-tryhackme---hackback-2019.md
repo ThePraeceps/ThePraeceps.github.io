@@ -553,11 +553,11 @@ This can be decoded with "echo c3RlZ29zYXVydXM= | base64 -d" which gives us "ste
 
 ## Question 5: What is the fifth flag?
 
-The "flag5.png" is an image of a Stegosarus. Running strings and exiftool on this image brough up nothing. So I decided to use the (photo forensics)[https://29a.ch/photo-forensics/#noise-analysis] tool from 29a.ch to look for evidence of the image being modified. 
+The "flag5.png" is an image of a Stegosarus. Running strings and exiftool on this image brough up nothing. So I decided to use the [photo forensics](https://29a.ch/photo-forensics/#noise-analysis) tool from 29a.ch to look for evidence of the image being modified. 
 
 ![Error Level Analysis]({{ '/assets/images/hackback-2019/hackback-flag5-errorlevel.png' | relative_url }}){: .center-image }*Error level analysis of the flag5.png file*
 
-This shows what looks like ASCII character values. I used (CyberChef)[https://gchq.github.io/CyberChef/] to convert this into a string which gave us the fifth flag "efb2f10fad88b0739ce3c67bf578ace6".
+This shows what looks like ASCII character values. I used [CyberChef](https://gchq.github.io/CyberChef/) to convert this into a string which gave us the fifth flag "efb2f10fad88b0739ce3c67bf578ace6".
 
 
 ## Question 6: What is the sixth flag?
