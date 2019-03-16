@@ -428,14 +428,162 @@ As this CTF does not have a strict flag format, we will have to manually look th
 >Heartbleed Data
 {:.filename}
 {% highlight text %}
+...
 [*] 10.0.0.143:443        - Printable info leaked:......\.<.h......4...6'.3....e...B(N....f.....
 ".!.9.8.........5.............................3.2.....E.D...../...A.............................
 ..........(KHTML, like Gecko) Chrome/44.0.2403.89 Safari/537.36..Content-Length: 75..Content-Typ
 e: application/x-www-form-urlencoded....user_name=hacker101&user_email=haxor@haxor.com&user_mess
-age=*THM{sSl-Is-BaD}*.!.}..+.....i..............................................................
-....................................................................... repeated 15755 times
+age=THM{sSl-Is-BaD}.!.}..+.....i................................................................
+..................................................................... repeated 15755 times
+...
 {% endhighlight  %}
 
 
 It took a few runs but I eventually identified the flag "THM{sSl-Is-BaD}".
+
+# Task 9: Char-Array [Reverse Engineering] [Easy]
+
+Once again as this is an easy reverse engineering challenge, strings is my goto tool. 
+
+>strings char-array
+{:.filename}
+{% highlight text %}
+...
+
+enter password
+password is correct
+password is incorrect
+THM{bAsIc-rE}
+;*3$"
+GCC: (Ubuntu 7.3.0-27ubuntu1~18.04) 7.3.0
+crtstuff.c
+...
+{% endhighlight  %}
+
+A quick run of it immediately gives us the flag "THM{bAsIc-rE}".
+
+# Task 11: Steganography [Forensics] [Medium]
+
+## Question 1: What is the first flag?
+
+The file we are given as an image. My first port of call for Steganography in this case is exiftool.
+
+>exiftool Lenna.jpg
+{:.filename}
+{% highlight text %}
+...
+Filter                          : Adaptive
+Interlace                       : Noninterlaced
+SRGB Rendering                  : Perceptual
+Artist                          : flag1:ebe37d3f236915ef1d91d864b352f80b
+Warning                         : [minor] Trailer data after PNG IEND chunk
+Image Size                      : 512x512
+...
+{% endhighlight  %}
+
+This immediately gives us the first flag "ebe37d3f236915ef1d91d864b352f80b"
+
+## Question 2: What is the second flag?
+
+Given that we are given multiple flags for this one file, it's likely that it has multiple file types within the one file.
+
+>binwalk Lenna.jpg
+{:.filename}
+{% highlight text %}
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             PNG image, 512 x 512, 8-bit/color RGB, non-interlaced
+54            0x36            Zlib compressed data, best compression
+473888        0x73B20         Zip archive data, encrypted at least v2.0 to extract, compressed size: 17113, uncompressed size: 21465, name: flag2.mp3
+491084        0x77E4C         Zip archive data, encrypted at least v2.0 to extract, compressed size: 2405, uncompressed size: 8600, name: flag4
+493568        0x78800         Zip archive data, encrypted at least v2.0 to extract, compressed size: 536074, uncompressed size: 538041, name: flag5.png
+2720711       0x2983C7        End of Zip archive
+{% endhighlight  %}
+
+This tells us that there is a zip file with multiple other files hidden within the png. We can run foremost on the image to extract the zip file, the unzip it with unzip. Unfortunately it has a password. I used the first flag (ebe37d3f236915ef1d91d864b352f80b) as the password on a whim, and it worked!
+
+This gives us a "flag2.mp3" file - I gave it a quick listen before trying anything crazy, and it turns out to be a computer voice saying "flag two is steganographyrules with no spaces". If we enter this, it accepts this as the flag.
+
+
+## Question 3: What is the third flag?
+
+Given that the rest of the flags are covered by another file, I decieded to look at the two "Stéphane.png" files. They appear to be identically named but are likely using similar unicode characters to be different in reality. I renamed these to "steph1.png" and "steph2.png" to make referencing them easier.
+
+They appear to be identical but one is slightly longer. I decided to run strings on the longer one to see if if there was a flag in the data.
+
+>strings Stéphane.png
+{:.filename}
+{% highlight text %}
+...
+lTWN.\
+`=OM
+IEND
+flag3:e8c02d01b173d905df0a07b2f143c587
+{% endhighlight  %}
+
+
+
+This found the third flag "e8c02d01b173d905df0a07b2f143c587".
+
+
+## Question 4: What is the fourth flag?
+
+The "flag4" file doesn't have an extention. Running "file" on it tells us that it's an elf excutable. Running strings on that file 
+
+>strings flag4
+{:.filename}
+{% highlight text %}
+...
+AWAVA
+AUATL
+[]A\A]A^A_
+Nothing to see here..
+c3RlZ29zYXVydXM=
+;*3$"
+GCC: (Ubuntu 5.4.0-6ubuntu1~16.04.11) 5.4.0 20160609
+crtstuff.c
+...
+{% endhighlight  %}
+
+This shows us "Nothing to see here" followed by what looks like a base64 string.
+
+This can be decoded with "echo c3RlZ29zYXVydXM= | base64 -d" which gives us "stegosaurus". I entered this as the fourth flag and it was correct.
+
+
+
+## Question 5: What is the fifth flag?
+
+The "flag5.png" is an image of a Stegosarus. Running strings and exiftool on this image brough up nothing. So I decided to use the (photo forensics)[https://29a.ch/photo-forensics/#noise-analysis] tool from 29a.ch to look for evidence of the image being modified. 
+
+![Error Level Analysis]({{ '/assets/images/hackback-2019/hackback-flag5-errorlevel.png' | relative_url }}){: .center-image }*Error level analysis of the flag5.png file*
+
+This shows what looks like ASCII character values. I used (CyberChef)[https://gchq.github.io/CyberChef/] to convert this into a string which gave us the fifth flag "efb2f10fad88b0739ce3c67bf578ace6".
+
+
+## Question 6: What is the sixth flag?
+
+I spent a lot of time trying to get this flag. I intepreted the hint "outside of the box" to mean in the original file and not in any of the zip files. I noticed some what looked like bar code patterns that looked like some encoding on the edge of the image in a box like pattern.
+
+However, when I looked up the orginal image to XOR it out, it was identical to the image I found on wikipedia, ruling that sort of stuff out.
+
+This stumped me for a while until on a whim I decided to download the image on the challenge page next to the download button for the challenge because that was also "outside of the box".
+
+
+>strings flag4
+{:.filename}
+{% highlight text %}
+...
+X Resolution                    : 1
+Y Resolution                    : 1
+Resolution Unit                 : None
+Artist                          : flag6:alwaysThinkOutsideTheBox
+Y Cb Cr Positioning             : Centered
+Image Width                     : 259
+Image Height                    : 194
+...
+
+This give us the final flag for this challenge "flag6:alwaysThinkOutsideTheBox".
+
+
+
 
