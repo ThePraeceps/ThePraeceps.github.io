@@ -6,6 +6,8 @@ tags: ctf tryhackme
 toc: true
 ---
 
+Access to the CTF can be found [here](https://tryhackme.com/room/hackback2019).
+
 # Task 1: Connect to our network 
 Free points for connecting to the challenge network? Sweet. However, our University address space conflicted with the CTF address space, making things a little harder. To get around this, I used a NAT adapter on my Kali VM to put it in a 192.0.0.0/8 address range, which solved the issue.
 >
@@ -417,7 +419,7 @@ This shows us a case statement spelling out "THMRANDENC" which looks like a pote
 
 # Task 7: Protecting Data In Transit [Web Exploitation] [Easy]
 
-Given that the name of this machine is "heartbleed" and there are a multiple heartbleed references in the webpage, what we need to do here is pretty obvious. I used metasploit and it's "auxiliary/scanner/ssl/openssl_heartbleed" module.
+Given that the name of this machine is "Heartbleed" and there are multiple heartbleed references in the webpage, what we need to do here is pretty obvious. I used metasploit and it's "auxiliary/scanner/ssl/openssl_heartbleed" module.
 
 We need to set the "RHOSTS" variable to the machine's ip and "verbose" to true to read the memory contents.
 
