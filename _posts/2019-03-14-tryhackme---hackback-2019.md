@@ -409,7 +409,7 @@ __init_array_end
 ...
 {% endhighlight  %}
 
-However, I could not find anything that looked like the flag in strings. I decided to open up the NSA's reverse engineering tool Ghidra and decompile the binary to see what is happening.
+However, I could not find anything that looked like a flag in the file's strings. I decided to take things a bit further and open up the NSA's reverse engineering tool Ghidra and decompile the binary to see what is really happening.
 
 ![Ghidra Decompiler]({{ '/assets/images/hackback-2019/hackback-2019-ghidra.jpeg' | relative_url }}){: .center-image }*Ghidra decompiler showing a decompiled version of the program*
 
