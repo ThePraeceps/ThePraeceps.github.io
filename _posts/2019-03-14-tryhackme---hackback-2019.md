@@ -581,6 +581,7 @@ Y Cb Cr Positioning             : Centered
 Image Width                     : 259
 Image Height                    : 194
 ...
+{% endhighlight  %}
 
 This give us the final flag for this challenge "flag6:alwaysThinkOutsideTheBox".
 
