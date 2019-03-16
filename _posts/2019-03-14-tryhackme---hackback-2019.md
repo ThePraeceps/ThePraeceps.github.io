@@ -426,14 +426,14 @@ As this CTF does not have a strict flag format, we will have to manually look th
 >Heartbleed Data
 {:.filename}
 {% highlight text %}
-[*] 10.0.0.143:443        - Printable info leaked:
-......\.<.h......4...6'.3....e...B(N....f.....".!.9.8.........5.............................3.2.....E.D
-...../...A.......................................(KHTML, like Gecko) Chrome/44.0.2403.89 Safari/537.36.
-.Content-Length: 75..Content-Type: application/x-www-form-urlencoded....user_name=hacker101&user_email=
-haxor@haxor.com&user_message=*THM{sSl-Is-BaD}*.!.}..+.....i.........................................
-............................................................................................ repeated 
-15755 times
+[*] 10.0.0.143:443        - Printable info leaked:......\.<.h......4...6'.3....e...B(N....f.....
+".!.9.8.........5.............................3.2.....E.D...../...A.............................
+..........(KHTML, like Gecko) Chrome/44.0.2403.89 Safari/537.36..Content-Length: 75..Content-Typ
+e: application/x-www-form-urlencoded....user_name=hacker101&user_email=haxor@haxor.com&user_mess
+age=*THM{sSl-Is-BaD}*.!.}..+.....i..............................................................
+....................................................................... repeated 15755 times
 {% endhighlight  %}
 
 
 It took a few runs but I eventually identified the flag "THM{sSl-Is-BaD}".
+
