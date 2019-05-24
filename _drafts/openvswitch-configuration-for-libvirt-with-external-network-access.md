@@ -80,4 +80,8 @@ TODO: /etc/network/interfaces configuration from Heimdallr here
 
 ## NAT through Host
 
+The advantage to this method is that the virtual machine will be complete invisible to the external network. This means that if network access is restricted, the virtual machine's traffic will appear to come from the device.
+
+The disadvantages to this method is that if a device outside of the device needs to connect to the Virtual Machine, it will not be able to without forwarding the port in the hosts firewall rules.
+
 # Sources
