@@ -77,13 +77,13 @@ This configuration can be made consistent using the definitions found in the "/e
 {% highlight text %}
 auto [interface]
 iface [interface] inet manual
-	pre-up ip link set eth0 up
-	post-down ip link set eth0 down
+	pre-up ip link set dev [interface] up
+	post-down ip link set dev [interface] down
 
 auto [bridge name]
 iface [bridge name] inet dhcp
-	dns-nameservers 1.1.1.1 1.0.0.1
 	hwaddress ether de:ad:be:ef:00:01
+	dns-nameservers 1.1.1.1,1.0.0.1
 {% endhighlight %}
 
 This configures the ethernet interface to come up on boot, but without an ip address. It also configures the bridge interface to use CloudFlare DNS servers and sets it's mac address on boot. This is important on the network this system is connected to uses a MAC whitelist to allow connections. Without this, the computer is unable to access the network. The MAC address can also be set in Open vSwitch with the following command:
