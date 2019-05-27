@@ -117,6 +117,7 @@ The second step to this is to add the forwarding rules to the "/etc/ufw/before.r
 
 >/etc/ufw/before.rules
 {.filename}
+{% raw %}
 *nat
 :PREROUTING ACCEPT [0:0]
 -A PREROUTING -i [wlan interface] -p tcp --dport [port to forward] -j DNAT --to-destination [ip address to forward to]
@@ -124,6 +125,7 @@ The second step to this is to add the forwarding rules to the "/etc/ufw/before.r
 :POSTROUTING ACCEPT [0:0] 
 -A POSTROUTING -s 192.168.1.0/24 -o [wlan interface] -j MASQUERADE
 [lines after truncated]
+{% endraw %}
 
 The rules should then be reloaded with the following command:
 > sudo ufw reload
