@@ -1,0 +1,1038 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"rop",
+				"rop_chain"
+			],
+			[
+				"eg",
+				"eggsize"
+			],
+			[
+				"noo",
+				"noopsled"
+			],
+			[
+				"sh",
+				"shellcode_part1"
+			],
+			[
+				"egg",
+				"egghunter"
+			],
+			[
+				"pre",
+				"preegg2"
+			],
+			[
+				"pree",
+				"preegg1"
+			],
+			[
+				"pre2",
+				"preegg2"
+			],
+			[
+				"cu",
+				"current_total"
+			],
+			[
+				"por",
+				"portstart"
+			],
+			[
+				"port",
+				"portend"
+			],
+			[
+				"get",
+				"getopenport"
+			],
+			[
+				"g",
+				"getopenport"
+			],
+			[
+				"ec",
+				"ecoduck-software"
+			],
+			[
+				"Mo",
+				"ModifierList"
+			],
+			[
+				"U",
+				"Unknown"
+			],
+			[
+				"rev",
+				"reverse_shell_listener"
+			],
+			[
+				"sen",
+				"sendHIDpacket"
+			],
+			[
+				"packe",
+				"packet_length"
+			],
+			[
+				"Lookup",
+				"LookUpShiftLayer"
+			],
+			[
+				"LookUp",
+				"LookUpScanCode"
+			],
+			[
+				"Lok",
+				"LookUpScanCode"
+			],
+			[
+				"lin",
+				"line_no"
+			],
+			[
+				"curre",
+				"current_command"
+			],
+			[
+				"li",
+				"line_no"
+			],
+			[
+				"curren",
+				"current_arg"
+			],
+			[
+				"time",
+				"timeToWait"
+			],
+			[
+				"curr",
+				"current_arg"
+			],
+			[
+				"eco",
+				"ecoduck-win"
+			],
+			[
+				"n",
+				"nmapresults"
+			],
+			[
+				"timeout",
+				"timeout_handler"
+			],
+			[
+				"ecoduc",
+				"ecoduck-simple"
+			],
+			[
+				"fun",
+				"functions"
+			],
+			[
+				"ora",
+				"oracle"
+			],
+			[
+				"mod",
+				"modinv"
+			],
+			[
+				"ans",
+				"ans6q"
+			],
+			[
+				"a",
+				"advancedanswers"
+			],
+			[
+				"ad",
+				"advancedquestions"
+			],
+			[
+				"adv",
+				"advancedanswers"
+			],
+			[
+				"que",
+				"question"
+			],
+			[
+				"proc",
+				"processquiet"
+			],
+			[
+				"bas",
+				"basicanswers"
+			],
+			[
+				"basic",
+				"basicquestions"
+			],
+			[
+				"right",
+				"rightthicc"
+			],
+			[
+				"left",
+				"leftthicc"
+			],
+			[
+				"lef",
+				"leftthicc"
+			],
+			[
+				"factor",
+				"factorstart"
+			],
+			[
+				"f",
+				"factorend"
+			],
+			[
+				"facto",
+				"factorstart"
+			],
+			[
+				"balance",
+				"balancestart"
+			],
+			[
+				"balan",
+				"balancestart"
+			],
+			[
+				"prd",
+				"prediction"
+			],
+			[
+				"recv",
+				"recv_timeout"
+			],
+			[
+				"flag",
+				"flagloc"
+			],
+			[
+				"hid",
+				"hiddenbytes"
+			],
+			[
+				"hidde",
+				"hiddentext"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "2019-03-14-tryhackme---hackback-2019.md",
+			"settings":
+			{
+				"buffer_size": 24279,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"pus",
+				"Git: Push"
+			],
+			[
+				"Quic",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"new",
+				"Jekyll: New draft"
+			],
+			[
+				"Packe",
+				"Package Control: Install Package"
+			],
+			[
+				"Qu",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"push",
+				"Git: Push"
+			],
+			[
+				"Git pus",
+				"Git: Push"
+			],
+			[
+				"Git Amm",
+				"Git: Amend Commit"
+			],
+			[
+				"Git:",
+				"Git: Amend Commit"
+			],
+			[
+				"p",
+				"Git: Push"
+			],
+			[
+				"QU",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"Git pu",
+				"Git: Pull"
+			],
+			[
+				"Qui",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"Push",
+				"Git: Push"
+			],
+			[
+				"Q",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"Git: Ad",
+				"Git: Add All"
+			],
+			[
+				"Git: aa",
+				"Git: Add All"
+			],
+			[
+				"pish",
+				"Permute Lines: Shuffle"
+			],
+			[
+				"Quick",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"Je",
+				"Jekyll: New post from template"
+			],
+			[
+				"J",
+				"Jekyll: New draft from template"
+			],
+			[
+				"Promo",
+				"Jekyll: Promote draft to post"
+			],
+			[
+				"Bui",
+				"Build: Cancel"
+			],
+			[
+				"Bu",
+				"Build: Cancel"
+			],
+			[
+				"B",
+				"Build: Cancel"
+			],
+			[
+				"B u",
+				"Build: Cancel"
+			],
+			[
+				"buil",
+				"Build: Cancel"
+			],
+			[
+				"Markd",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"M",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"Mark",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"Snippet:",
+				"Snippet: $LABEL"
+			],
+			[
+				"j",
+				"Jekyll: New template"
+			],
+			[
+				"MarkD",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"jk",
+				"Jekyll: New template"
+			],
+			[
+				"Jekyll:",
+				"Jekyll: New post"
+			],
+			[
+				"Jekyll: New ",
+				"Jekyll: New post"
+			],
+			[
+				"Insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Markdo",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"Instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Quc",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"Git:P",
+				"Git: Push"
+			],
+			[
+				"ush",
+				"UI: Select Theme"
+			],
+			[
+				"qu",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"qui",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"puhs",
+				"Git: Push"
+			],
+			[
+				"Qu\t",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"pUsh",
+				"Git: Push"
+			],
+			[
+				"Git Comm",
+				"Git: Commit"
+			],
+			[
+				"Git Add",
+				"Git: Add All"
+			],
+			[
+				"Gitp",
+				"Git: Pull"
+			],
+			[
+				"Git P",
+				"Git: Push"
+			],
+			[
+				"Qui\t",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"QUic",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"qUIC",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"Com",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"All",
+				"Git: Add All"
+			],
+			[
+				"Commit",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"QUick",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"Quick ",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"Commi",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"Comm",
+				"Git: Commit"
+			],
+			[
+				"Add ",
+				"Git: Add All"
+			],
+			[
+				"git: com",
+				"Git: Commit"
+			],
+			[
+				"Git: Add",
+				"Git: Add All"
+			],
+			[
+				"psuh",
+				"Git: Push"
+			],
+			[
+				"Git: com",
+				"Git: Commit"
+			],
+			[
+				"add",
+				"Git: Add All"
+			],
+			[
+				"commit",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"Git Co",
+				"Git: Commit"
+			],
+			[
+				"Git: Add A",
+				"Git: Add All"
+			],
+			[
+				"Git: comm",
+				"Git: Commit"
+			],
+			[
+				"commit\t\t",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"comm",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"commi",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"Add",
+				"Git: Add All"
+			],
+			[
+				"Commi\t",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"pull",
+				"Git: Pull"
+			],
+			[
+				"commiit",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"Commit ",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"git: co",
+				"Git: Quick Commit (repo)"
+			],
+			[
+				"git pus",
+				"Git: Push"
+			],
+			[
+				"git: qui",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"git",
+				"Git: Push"
+			],
+			[
+				"Git: Co",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"Git: Pus",
+				"Git: Push"
+			],
+			[
+				"git: p",
+				"Git: Pull"
+			],
+			[
+				"git: pus",
+				"Git: Push"
+			],
+			[
+				"Git: ",
+				"Git: Commit"
+			],
+			[
+				"Git: add",
+				"Git: Add Current File"
+			],
+			[
+				"Git: Push",
+				"Git: Push"
+			],
+			[
+				"Package Insta",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Add Channel"
+			],
+			[
+				"NASM",
+				"Set Syntax: Assembly x86 (NASM)"
+			],
+			[
+				"Inst",
+				"Package Control: Install Package"
+			],
+			[
+				"nasm",
+				"Snippet: Add Tick Marks"
+			],
+			[
+				"Theme",
+				"UI: Select Color Scheme"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"Cancel",
+				"Build: Cancel"
+			],
+			[
+				"cance",
+				"Build: Cancel"
+			],
+			[
+				"Can",
+				"Build: Cancel"
+			],
+			[
+				"cancel",
+				"Build: Cancel"
+			],
+			[
+				"CAn",
+				"Build: Cancel"
+			],
+			[
+				"bui",
+				"Build: Cancel"
+			],
+			[
+				"Canc",
+				"Build: Cancel"
+			],
+			[
+				"Buil",
+				"Build: Cancel"
+			],
+			[
+				"bu",
+				"Build: Cancel"
+			],
+			[
+				"Cancel ",
+				"Build: Cancel"
+			],
+			[
+				"Ar",
+				"Arithmetic"
+			],
+			[
+				"Sublie",
+				"SublimeLinter: Goto Error"
+			],
+			[
+				"lint",
+				"SublimeLinter: Show Line Errors"
+			],
+			[
+				"toggle",
+				"SublimeLinter: Toggle Highlights"
+			],
+			[
+				"Package",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: list",
+				"Package Control: List Packages"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Install ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: Remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"Install",
+				"Package Control: Install Package"
+			],
+			[
+				"Install Package",
+				"Package Control: Install Package"
+			],
+			[
+				"Instgal",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 414.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/rsherry/honeypot.xml",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/guide/calc.m3u",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/guide/eggdep.py",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/guide/validateeip.py",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/guide/shelldep.py",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/guide/omelet.py",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/guide/distancetoeip.py",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/guide/download.asm",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/guide/longa.py",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/conor/default.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/no-dep/shell/omelet.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/no-dep/shell/egg.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/dep/shell/shell.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/no-dep/shell/omelet.m3u",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/no-dep/calc/omlet/omelet.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/no-dep/calc/egg/egg.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/omeletteshell.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/dep/shell/shellstage.asm",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/dep/calc/calc.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/dep/shell/shell.m3u",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/omeletteshell.m3u",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/dep/calc.m3u",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/dep/calc/calctest.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/dep/calc/calc.m3u",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/dep/calc.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/no-dep/calc/reg/calc.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/shellbin.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/shell.bin",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/genomletcalc/omlet.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/reverse.asm",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/oldbad/tools/shellbin.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/omelettethred.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/omelette.asm",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/oldbad/omeletteshell.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/omeletteshell2.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/stacktester.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/test.c",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/calc/omlette/omelettecalc.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/normalcalc/calc.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/calcsource/calc.asm",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/calcsource/omelette.asm",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/omelettecalc.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/calc.pl",
+		"/home/rsherry/.config/sublime-text-3/Packages/User/perl.sublime-build",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/substrtest.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/eggshell.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/calcsource/calcpart1.asm",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/calcsource/calcpart2.asm",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/pveReadbin.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/eggcalc.m3u",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/eggcalc.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/eggshell-baD.pl",
+		"/gdrive/CMP320 - Ethical Hacking 3/Coursework/Exploit Development/calc.m3u",
+		"/git/ecoduck-hardware/templates/ecoduck.tmpl",
+		"/git/ecoduck-hardware/templates/getty.override.tty",
+		"/git/ecoduck-hardware/templates/ecoduck-init.tmpl",
+		"/git/ecoduck-hardware/templates/ecoduck-install.tmpl",
+		"/git/ecoduck-hardware/patch-kernel.sh",
+		"/git/ecoduck-hardware/initial-setup.sh",
+		"/git/thepraeceps.github.io/_includes/toc.html",
+		"/git/thepraeceps.github.io/_layouts/post.html",
+		"/git/thepraeceps.github.io/about.md",
+		"/git/thepraeceps.github.io/_drafts/wip.md",
+		"/git/thepraeceps.github.io/_posts/2019-03-14-test-post.md",
+		"/git/thepraeceps.github.io/_posts/2019-03-14-tryhackme---hackback-2019.md",
+		"/git/thepraeceps.github.io/_drafts/tryhackme---hackback-2019.md",
+		"/home/rsherry/.config/sublime-text-3/Packages/User/Jekyll.sublime-settings",
+		"/git/thepraeceps.github.io/_includes/header.html",
+		"/git/thepraeceps.github.io/assets/css/theme.scss",
+		"/git/thepraeceps.github.io/_config.yml",
+		"/home/rsherry/Downloads/eventlog.sh",
+		"/git/thepraeceps.github.io/_drafts/test.md",
+		"/home/rsherry/.config/sublime-text-3/Packages/User/Jekyll Templates/ctf-post.yaml",
+		"/home/rsherry/.config/sublime-text-3/Packages/Jekyll/Jekyll.sublime-settings",
+		"/git/thepraeceps.github.io/_drafts/tryhackme-hackback-2019.md",
+		"/git/thepraeceps.github.io/_posts/2019-03-10-tryhackme-hackback-2019.md",
+		"/git/thepraeceps.github.io/_posts/2019-03-10-tryhackme-hackback2019.markdown",
+		"/home/rsherry/.config/sublime-text-3/Packages/Jekyll/README.md",
+		"/home/rsherry/.config/sublime-text-3/Packages/Jekyll/Default (Linux).sublime-keymap",
+		"/passthrough/CMP311/ecoduck-software/ecoduck.py",
+		"/passthrough/CMP311/ecoduck-software/examples/basic/helloworld.txt",
+		"/passthrough/CMP311/ecoduck-hardware/patch-kernel.sh",
+		"/passthrough/CMP311/ecoduck-hardware/templates/wpa_supplicant.conf.tmpl",
+		"/passthrough/CMP311/ecoduck-hardware/gadget-configure.sh",
+		"/passthrough/CMP311/ecoduck-hardware/gadget-remove.sh",
+		"/passthrough/CMP311/ecoduck-hardware/gadget-test.py",
+		"/passthrough/CMP309/Labs/dialer/app/src/main/java/scot/sherry/lab1/MainActivity.java",
+		"/passthrough/CMP309/Tutorial/wk3/tut/app/src/main/java/scot/sherry/tutwk3/MainActivity.java",
+		"/passthrough/CMP311/ecoduck-hardware/templates/interfaces.tmpl",
+		"/passthrough/CMP311/ecoduck-hardware/templates/gadget.patch",
+		"/passthrough/CMP311/ecoduck-hardware/README.md",
+		"/passthrough/CMP311/ecoduck-hardware/templates/dnsmasq.conf.tmpl",
+		"/passthrough/CMP311/ecoduck-hardware/gadget-test.sh",
+		"/passthrough/CMP311/ecoduck-hardware/setup-network.sh",
+		"/passthrough/CMP311/ecoduck-hardware/readtest.py",
+		"/passthrough/CMP311/ecoduck-hardware/good",
+		"/passthrough/CMP311/ecoduck-hardware/gadget-composite-massrndis.sh",
+		"/passthrough/CMP311/ecoduck-hardware/fingerprint-host.sh",
+		"/passthrough/CMP311/ecoduck-hardware/electrical-test.sh",
+		"/passthrough/CMP311/ecoduck-hardware/gadget-smartconfigure.sh",
+		"/passthrough/CMP311/ecoduck-hardware/gadget-rndis-windows.sh",
+		"/passthrough/ecoduck-hardware/wpa_supplicant.conf.tmpl",
+		"/passthrough/ecoduck-hardware/interfaces.tmpl",
+		"/passthrough/ecoduck-hardware/masstoragetest.sh",
+		"/passthrough/ecoduck-hardware/waitdata.bash",
+		"/passthrough/CMP320/wk1/keygen.py",
+		"/passthrough/picoCTF-2018/Reversing/assembly-2/recreation.py",
+		"/passthrough/picoCTF-2018/Reversing/loop_asm_rev.S",
+		"/passthrough/picoCTF-2018/Cryptography/James-Brahm-Returns/getflag.py",
+		"/passthrough/picoCTF-2018/Cryptography/James-Brahm-Returns/source.py",
+		"/passthrough/picoCTF-2018/Cryptography/SpyFi_fin/getflag.py",
+		"/passthrough/picoCTF-2018/Reversing/assembly-1/eq_asm_rev.S",
+		"/passthrough/picoCTF-2018/Cryptography/Safe-RSA/getflag.py",
+		"/passthrough/picoCTF-2018/Cryptography/SpyFi/getflag.py",
+		"/passthrough/picoCTF-2018/Cryptography/rsa-madlibs/getflag.py",
+		"/passthrough/picoCTF-2018/Cryptography/rsa-madlibs/long.py",
+		"/passthrough/picoCTF-2018/Cryptography/caesar-cipher-2/getflag.py",
+		"/passthrough/picoCTF-2018/Binary Exploitation/echooo/getflag.py",
+		"/passthrough/picoCTF-2018/General Skills/script-me/getflag.py",
+		"/passthrough/picoCTF-2018/Web Exploitation/Help-Me-Reset-2/test.py",
+		"/passthrough/picoCTF-2018/General Skills/script-me/testpwntools.py",
+		"/passthrough/picoCTF-2018/General Skills/script-me/testenv.py",
+		"/passthrough/picoCTF-2018/General Skills/roulette_fin/getflag.py",
+		"/passthrough/picoCTF-2018/General Skills/roulette/preditctnum.c",
+		"/passthrough/picoCTF-2018/General Skills/roulette/roulette.c",
+		"/passthrough/picoCTF-2018/General Skills/roulette/getflag.py",
+		"/passthrough/picoCTF-2018/General Skills/roulette/testran.py",
+		"/passthrough/picoCTF-2018/General Skills/roulette/printrand.c"
+	],
+	"find":
+	{
+		"height": 31.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "2019-03-14-tryhackme---hackback-2019.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 24279,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								139,
+								139
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 209.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 151.0
+	},
+	"pinned_build_system": "Packages/Python/Python.sublime-build",
+	"project": "2019-03-14-tryhackme---hackback-2019.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 262.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

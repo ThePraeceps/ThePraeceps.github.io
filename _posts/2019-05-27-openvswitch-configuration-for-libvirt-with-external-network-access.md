@@ -131,6 +131,10 @@ The second step to this is to add the forwarding rules to the "/etc/ufw/before.r
 
 :POSTROUTING ACCEPT [0:0] 
 -A POSTROUTING -s 192.168.1.0/24 -o [wlan interface] -j MASQUERADE
+
+COMMIT
+
+*filter
 [lines after truncated]
 {% endraw %}
 {% endhighlight %}
