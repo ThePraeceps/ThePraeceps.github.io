@@ -73,7 +73,7 @@ Any other interface on the vSwitch should now be able to communicate to the exte
 This configuration can be made consistent using the definitions found in the "/etc/network/interfaces" file. 
 
 >/etc/network/interfaces
-{.filename}
+{:.filename}
 auto [interface]
 iface [interface] inet manual
 	pre-up ip link set eth0 up
@@ -105,7 +105,7 @@ The forwarding behaviour can then be configured with Uncomplicated Firewall (UFW
 The first step to doing this is to enable forwarding in the "/etc/default/ufw" configuration file. This is done by changing the "DEFAULT_FORWARD_POLICY" to ACCEPT.
 
 >/etc/default/ufw
-{.filename}
+{:.filename}
 [lines before truncated]
 DEFAULT_INPUT_POLICY="DROP"
 DEFAULT_OUTPUT_POLICY="ACCEPT"
@@ -116,7 +116,7 @@ DEFAULT_APPLICATION_POLICY="SKIP"
 The second step to this is to add the forwarding rules to the "/etc/ufw/before.rules" rules file. This can be used to allow forwarding through an interface from an IP range, and to allow port forwarding. This should be added before the "\*filter" rules.
 
 >/etc/ufw/before.rules
-{.filename}
+{:.filename}
 {% raw %}
 *nat
 :PREROUTING ACCEPT [0:0]
@@ -133,7 +133,7 @@ The rules should then be reloaded with the following command:
 The host's bridge interface can then be configured. As this interface does not directly have external network access, the interface must be configured manually. In my case I did this using the "/etc/network/interfaces" file. For this bridge I assigned it an address on the 192.168.1.0/24 subnet to match the firewall configuration above.
 
 >/etc/network/interfaces
-{.filename}
+{:.filename}
 auto hosting
 iface hosting inet static
 	address 192.168.1.1
