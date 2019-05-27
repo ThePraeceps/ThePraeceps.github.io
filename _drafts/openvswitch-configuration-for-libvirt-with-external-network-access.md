@@ -70,18 +70,71 @@ Any other interface on the vSwitch should now be able to communicate to the exte
 
 > sudo dhclient -i [bridge name]
 
-- add it to bridge
-
 This configuration can be made consistent using the definitions found in the "/etc/network/interfaces" file. 
-TODO: /etc/network/interfaces configuration from Heimdallr here
 
-- Explain general layout
-- Explain mac line
+>/etc/network/interfaces
+{.filename}
+auto [interface]
+iface [interface] inet manual
+	pre-up ip link set eth0 up
+	post-down ip link set eth0 down
+
+auto [bridge name]
+iface [bridge name] inet dhcp
+	dns-nameservers 1.1.1.1 1.0.0.1
+	hwaddress ether de:ad:be:ef:00:01
+
+This configures the ethernet interface to come up on boot, but without an ip address. It also configures the bridge interface to use CloudFlare DNS servers and sets it's mac address on boot. This is important on the network this system is connected to uses a MAC whitelist to allow connections. Without this, the computer is unable to access the network. The MAC address can also be set in Open vSwitch with the following command:
+
+> sudo ovs-vsctl set interface hosting mac=\"de:ad:be:ef:00:01\"
 
 ## NAT through Host
 
-The advantage to this method is that the virtual machine will be complete invisible to the external network. This means that if network access is restricted, the virtual machine's traffic will appear to come from the device.
+The advantage to this method is that the virtual machine will be complete invisible to the external network. This means that if network access is restricted, the virtual machine's traffic will appear to come from the device. In addition, the traffic from the device can be controlled using the hosts firewall rules, meaning that guest traffic can be restricted. This can be done to increase security if the guest is not fully trusted.
 
-The disadvantages to this method is that if a device outside of the device needs to connect to the Virtual Machine, it will not be able to without forwarding the port in the hosts firewall rules.
+The disadvantages to this method is that if a device outside of the device needs to connect to the Virtual Machine, it will not be able to without forwarding the port in the hosts firewall rules. In addition it is harder overall to configure due to the need to configure firewall correctly to ensure traffic is managed correctly.
 
-# Sources
+To do this, first ipv4 forwarding must be enabled for the system. This can be done by modifying the sysctl value in "/etc/sysctl.conf":
+
+>/etc/sysctl.conf
+{:.filename}
+net.ipv4.ip_forward = 1
+
+The forwarding behaviour can then be configured with Uncomplicated Firewall (UFW) in Ubuntu 18.04.
+
+The first step to doing this is to enable forwarding in the "/etc/default/ufw" configuration file. This is done by changing the "DEFAULT_FORWARD_POLICY" to ACCEPT.
+
+>/etc/default/ufw
+{.filename}
+[lines before truncated]
+DEFAULT_INPUT_POLICY="DROP"
+DEFAULT_OUTPUT_POLICY="ACCEPT"
+DEFAULT_FORWARD_POLICY="ACCEPT"
+DEFAULT_APPLICATION_POLICY="SKIP"
+[lines after truncated]
+
+The second step to this is to add the forwarding rules to the "/etc/ufw/before.rules" rules file. This can be used to allow forwarding through an interface from an IP range, and to allow port forwarding. This should be added before the "\*filter" rules.
+
+>/etc/ufw/before.rules
+{.filename}
+*nat
+:PREROUTING ACCEPT [0:0]
+-A PREROUTING -i [wlan interface] -p tcp --dport [port to forward] -j DNAT --to-destination [ip address to forward to]
+
+:POSTROUTING ACCEPT [0:0] 
+-A POSTROUTING -s 192.168.1.0/24 -o [wlan interface] -j MASQUERADE
+[lines after truncated]
+
+The rules should then be reloaded with the following command:
+> sudo ufw reload
+
+The host's bridge interface can then be configured. As this interface does not directly have external network access, the interface must be configured manually. In my case I did this using the "/etc/network/interfaces" file. For this bridge I assigned it an address on the 192.168.1.0/24 subnet to match the firewall configuration above.
+
+>/etc/network/interfaces
+{.filename}
+auto hosting
+iface hosting inet static
+	address 192.168.1.1
+	netmask 255.255.255.0
+
+Other hosts on the network will now be able to access the external network by using the host's IP address as a gateway. It should be noted that unless a DHCP server is setup on the host for the bridge interface, IP address for guests will need to be assigned manually.
