@@ -74,6 +74,7 @@ This configuration can be made consistent using the definitions found in the "/e
 
 >/etc/network/interfaces
 {:.filename}
+{% highlight text %}
 auto [interface]
 iface [interface] inet manual
 	pre-up ip link set eth0 up
@@ -83,6 +84,7 @@ auto [bridge name]
 iface [bridge name] inet dhcp
 	dns-nameservers 1.1.1.1 1.0.0.1
 	hwaddress ether de:ad:be:ef:00:01
+{% endhighlight %}
 
 This configures the ethernet interface to come up on boot, but without an ip address. It also configures the bridge interface to use CloudFlare DNS servers and sets it's mac address on boot. This is important on the network this system is connected to uses a MAC whitelist to allow connections. Without this, the computer is unable to access the network. The MAC address can also be set in Open vSwitch with the following command:
 
@@ -98,7 +100,9 @@ To do this, first ipv4 forwarding must be enabled for the system. This can be do
 
 >/etc/sysctl.conf
 {:.filename}
+{% highlight text %}
 net.ipv4.ip_forward = 1
+{% endhighlight %}
 
 The forwarding behaviour can then be configured with Uncomplicated Firewall (UFW) in Ubuntu 18.04.
 
@@ -106,17 +110,20 @@ The first step to doing this is to enable forwarding in the "/etc/default/ufw" c
 
 >/etc/default/ufw
 {:.filename}
+{% highlight text %}
 [lines before truncated]
 DEFAULT_INPUT_POLICY="DROP"
 DEFAULT_OUTPUT_POLICY="ACCEPT"
 DEFAULT_FORWARD_POLICY="ACCEPT"
 DEFAULT_APPLICATION_POLICY="SKIP"
 [lines after truncated]
+{% endhighlight %}
 
 The second step to this is to add the forwarding rules to the "/etc/ufw/before.rules" rules file. This can be used to allow forwarding through an interface from an IP range, and to allow port forwarding. This should be added before the "\*filter" rules.
 
 >/etc/ufw/before.rules
 {:.filename}
+{% highlight text %}
 {% raw %}
 *nat
 :PREROUTING ACCEPT [0:0]
@@ -126,6 +133,7 @@ The second step to this is to add the forwarding rules to the "/etc/ufw/before.r
 -A POSTROUTING -s 192.168.1.0/24 -o [wlan interface] -j MASQUERADE
 [lines after truncated]
 {% endraw %}
+{% endhighlight %}
 
 The rules should then be reloaded with the following command:
 > sudo ufw reload
@@ -134,9 +142,11 @@ The host's bridge interface can then be configured. As this interface does not d
 
 >/etc/network/interfaces
 {:.filename}
+{% highlight text %}
 auto hosting
 iface hosting inet static
 	address 192.168.1.1
 	netmask 255.255.255.0
+{% endhighlight %}
 
 Other hosts on the network will now be able to access the external network by using the host's IP address as a gateway. It should be noted that unless a DHCP server is setup on the host for the bridge interface, IP address for guests will need to be assigned manually.
