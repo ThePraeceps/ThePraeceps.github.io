@@ -36,14 +36,14 @@ A virtual machine cannot be connected to a vSwitch using the "virt-manager" GUI 
 The interface can be defined under the devices node in the libvirt XML. The XML for an Open vSwitch interface is:
 
 >
-{% highlight xml % }
+{% highlight xml %}
 <interface type='bridge'>
 	<source bridge='hosting'/>
 	<virtualport type='openvswitch'/>
 	<target dev='win10'/>
 	<model type='virtio'/>
 </interface>
-{% endhighlight  %}
+{% endhighlight %}
 
 # External Network Access
 
