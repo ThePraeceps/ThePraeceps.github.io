@@ -1,7 +1,7 @@
 ---
 title: TryHackMe - HackBack 2
 layout: post
-description: A write up of the TryHackMe HackBack 2019 2 University CTF
+description: A write up of the TryHackMe HackBack 2 University CTF
 tags: ctf tryhackme
 toc: true
 ---
