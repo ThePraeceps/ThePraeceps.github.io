@@ -271,7 +271,8 @@ Metasploit contains the "exploit/unix/ftp/vsftpd_234_backdoor” module to explo
 
 This gives full root access to “router 1”, which I used to create a shell and cat the “/root/flag.txt” file, which contains the flag for this question.
 
-## Question 6: What flag is transmitted from flag_server to flag_client over UDP? {FLAG:UDP:XXX} and Question 7: What flag is transmitted from flag_server to flag_client over TCP? {FLAG:TCP:XXX}
+## Question 6: What flag is transmitted from flag_server to flag_client over UDP? {FLAG:UDP:XXX} 
+## Question 7: What flag is transmitted from flag_server to flag_client over TCP? {FLAG:TCP:XXX}
 
 With access to the router network, we are now in a position to attack the other two routers in the network by poisoning the BGP routing table.
 
